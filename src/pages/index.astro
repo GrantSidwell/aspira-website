@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import ModelViewer from '../components/ModelViewer.astro';
+import { site } from '../data/site';
+import { team } from '../data/team';
+import { getCollection } from 'astro:content';
+const sections = (await getCollection('report')).sort((a, b) => a.data.number - b.data.number);
+const services = [
+  { t: 'Condition surveys', d: 'Systematic inspection and schedules of condition for historic and post-war buildings.' },
+  { t: 'Building pathology', d: 'Reasoned diagnosis of defects, from moisture and masonry decay to concrete and metal corrosion.' },
+  { t: 'Heritage-led adaptation', d: 'Repair and reuse strategies that keep what matters and let buildings work again.' },
+  { t: 'Retrofit and carbon', d: 'Energy, resilience and whole-life carbon options weighed against heritage value.' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Building surveying consultancy</p>
+        <h1>{site.tagline}.</h1>
+        <p class="lede">Aspira inspects, diagnoses and plans the future of buildings with character. Our current commission: the {site.project.name} on {site.project.location}.</p>
+        <p class="ctas"><a class="btn" href="/model">Explore the 3D model</a> <a class="btn ghost" href="/project">Read the report</a></p>
+      </div>
+      <ModelViewer height="min(64vh, 560px)" showHotspots={false} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Vision and mission</p>
+      <h2 class="narrow">Placeholder: one sentence on why Aspira exists, and one on how you work.</h2>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <div class="grid four">
+        {services.map((s) => <div class="card"><h3>{s.t}</h3><p class="muted">{s.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">The commission</p>
+      <h2>{site.project.name}</h2>
+      <ol class="toc">
+        {sections.map((s) => (
+          <li><a href={`/project/${s.id}`}><span class="n">{String(s.data.number).padStart(2, '0')}</span><span><strong>{s.data.title}</strong><br /><span class="muted">{s.data.summary}</span></span></a></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <p class="eyebrow">People</p>
+      <h2>The team</h2>
+      <div class="grid four">
+        {team.map((m) => <a class="person" href={`/team#${m.id}`}><span class="av">{m.name.split(' ').map((p) => p[0]).join('')}</span><strong>{m.name}</strong><span>{m.role}</span></a>)}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .hero { padding: 56px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; }
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .narrow { max-width: 30ch; }
+  .alt { background: var(--paper-2); }
+  .four { grid-template-columns: repeat(4, 1fr); }
+  .toc { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .toc a { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .toc a:hover strong { color: var(--brick); }
+  .n { font-family: var(--serif); font-size: 1.6rem; color: var(--brick); }
+  .person { display: flex; flex-direction: column; gap: 4px; text-decoration: none; padding: 20px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; }
+  .person span:last-child { opacity: .7; font-size: .9rem; }
+  .av { width: 56px; height: 56px; border-radius: 50%; background: var(--brick); display: grid; place-items: center; font-family: var(--serif); font-size: 1.2rem; margin-bottom: 10px; }
+  @media (max-width: 900px) { .hero-grid, .four { grid-template-columns: 1fr 1fr; } .hero-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .four { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,14 @@
+{
+  "name": "aspira-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@google/model-viewer": "^4.0.0",
+    "astro": "^5.0.0"
+  }
+}

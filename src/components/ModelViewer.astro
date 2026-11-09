@@ -1,0 +1,72 @@
+---
+import { hotspots } from '../data/hotspots';
+interface Props { src?: string; height?: string; showHotspots?: boolean; autoRotate?: boolean; }
+const { src = '/models/cattle-market.glb', height = '70vh', showHotspots = true, autoRotate = true } = Astro.props;
+---
+<div class="mv-wrap" style={`--h:${height}`}>
+  <model-viewer
+    src={src}
+    alt="3D model of the Cattle Market subway entrance, Kingston"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate={autoRotate ? '' : undefined}
+    auto-rotate-delay="2000"
+    rotation-per-second="12deg"
+    interaction-prompt="auto"
+    shadow-intensity="1"
+    exposure="1.05"
+    camera-orbit="-35deg 64deg 80m"
+    camera-target="-14m -2m 6m"
+    field-of-view="30deg"
+    min-camera-orbit="auto auto 5m"
+    max-camera-orbit="auto 95deg 120m"
+    environment-image="neutral"
+  >
+    {showHotspots && hotspots.map((h) => (
+      <button class="hotspot" data-slot={`hotspot-${h.id}`} data-position={h.position} data-normal={h.normal} aria-label={h.label}>
+        <span class="dot"></span>
+        <span class="hs-card">
+          <strong>{h.label}</strong>
+          <span>{h.note}</span>
+          {h.section && <a href={`/project/${h.section}`}>Read in the report</a>}
+        </span>
+      </button>
+    ))}
+      </model-viewer>
+  <p class="mv-help">Drag to rotate · scroll or pinch to zoom · right-drag or two-finger drag to pan</p>
+  <p class="mv-pick" hidden></p>
+</div>
+
+<script>
+  // Astro strips `slot` attributes at build time, so hotspot slots are set here,
+  // before model-viewer loads and scans its children.
+  document.querySelectorAll<HTMLElement>('.hotspot[data-slot]').forEach((h) => { h.slot = h.dataset.slot!; });
+  import('@google/model-viewer');
+  // Developer helper: open any page with ?pick=1 and click the model to get hotspot coordinates.
+  if (new URLSearchParams(location.search).has('pick')) {
+    document.querySelectorAll('model-viewer').forEach((mv: any) => {
+      const out = mv.parentElement.querySelector('.mv-pick');
+      out.hidden = false; out.textContent = 'Pick mode: click the model to read a hotspot position.';
+      mv.addEventListener('click', (e: MouseEvent) => {
+        const hit = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+        if (!hit) return;
+        const f = (v: any) => `${v.x.toFixed(2)} ${v.y.toFixed(2)} ${v.z.toFixed(2)}`;
+        out.textContent = `position: '${f(hit.position)}', normal: '${f(hit.normal)}'`;
+      });
+    });
+  }
+</script>
+
+<style>
+  .mv-wrap { position: relative; }
+  model-viewer { width: 100%; height: var(--h); background: radial-gradient(ellipse at 50% 40%, #fbfaf7, #e4ded2); border-radius: 18px; --poster-color: transparent; }
+  .mv-help { font-size: .82rem; color: var(--ink-soft); text-align: center; margin: .6rem 0 0; }
+  .mv-pick { font: .85rem/1.4 ui-monospace, monospace; background: #fff; border: 1px dashed var(--brick); padding: .5rem .8rem; border-radius: 8px; }
+  .hotspot { background: none; border: 0; padding: 0; cursor: pointer; position: relative; }
+  .hotspot .dot { display: block; width: 22px; height: 22px; border-radius: 50%; background: var(--brick); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .hotspot .hs-card { display: none; position: absolute; left: 30px; top: -10px; width: 240px; text-align: left; background: #fff; color: var(--ink); border-radius: 10px; padding: 12px 14px; font-size: .85rem; line-height: 1.45; box-shadow: 0 8px 30px rgba(0,0,0,.18); }
+  .hotspot .hs-card strong { display: block; font-family: var(--serif); font-size: 1rem; margin-bottom: 4px; }
+  .hotspot .hs-card a { display: inline-block; margin-top: 6px; }
+  .hotspot:hover .hs-card, .hotspot:focus .hs-card, .hotspot:focus-within .hs-card { display: block; }
+  .hotspot[data-visible="false"] { opacity: .25; }
+</style>

@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { byId } from '../../data/team';
+export async function getStaticPaths() {
+  const all = (await getCollection('report')).sort((a, b) => a.data.number - b.data.number);
+  return all.map((entry, i) => ({ params: { slug: entry.id }, props: { entry, prev: all[i - 1], next: all[i + 1] } }));
+}
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const lead = byId(entry.data.lead);
+---
+<Base title={entry.data.title} description={entry.data.summary}>
+  <article class="section">
+    <div class="wrap">
+      <p class="eyebrow">Section {entry.data.number}{lead ? ` · Led by ${lead.name}` : ''}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.summary}</p>
+      <div class="prose"><Content /></div>
+      <nav class="pn">
+        {prev ? <a href={`/project/${prev.id}`}>← {prev.data.title}</a> : <span></span>}
+        {next && <a href={`/project/${next.id}`}>{next.data.title} →</a>}
+      </nav>
+    </div>
+  </article>
+</Base>
+<style>
+  .prose { margin-top: 40px; }
+  .pn { display: flex; justify-content: space-between; gap: 16px; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
+</style>

@@ -1,0 +1,23 @@
+---
+import { site } from '../data/site';
+---
+<footer class="dark">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="name">{site.name}</p>
+        <p>{site.legalName}</p>
+      </div>
+      <div>
+        <p><a href="/project">The project</a><br /><a href="/model">3D model</a><br /><a href="/team">Team</a></p>
+      </div>
+    </div>
+    <p class="disc">{site.disclaimer}</p>
+  </div>
+</footer>
+<style>
+  footer { padding: 56px 0 40px; font-size: .92rem; }
+  .cols { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .name { font-family: var(--serif); font-size: 1.6rem; margin: 0; }
+  .disc { margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); font-size: .8rem; opacity: .75; max-width: 80ch; }
+</style>

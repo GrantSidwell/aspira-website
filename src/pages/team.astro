@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { team } from '../data/team';
+---
+<Base title="Team" description="The Aspira team.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">People</p>
+      <h1>Our team</h1>
+      <p class="lede">Four surveyors, one commission. Each of us leads part of the inspection and report.</p>
+      <div class="grid people">
+        {team.map((m) => (
+          <article class="card" id={m.id}>
+            {m.photo ? <img src={m.photo} alt={m.name} class="ph" /> : <div class="ph ini">{m.name.split(' ').map((p) => p[0]).join('')}</div>}
+            <h2>{m.name}</h2>
+            <p class="role">{m.role}</p>
+            <p class="muted">{m.bio}</p>
+            <span class="tag">{m.focus}</span>
+            {m.linkedin && <p><a href={m.linkedin}>LinkedIn</a></p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .people { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+  .ph { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+  .ini { display: grid; place-items: center; background: var(--green); color: #fff; font-family: var(--serif); font-size: 3rem; }
+  .card h2 { font-size: 1.6rem; margin: 0; }
+  .role { color: var(--brick); font-weight: 600; margin: .3rem 0 .8rem; }
+  @media (max-width: 700px) { .people { grid-template-columns: 1fr; } }
+</style>

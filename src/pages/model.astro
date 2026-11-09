@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import ModelViewer from '../components/ModelViewer.astro';
+import { hotspots } from '../data/hotspots';
+---
+<Base title="3D model" description="Interactive 3D model of the Cattle Market subway entrance, Kingston.">
+  <section class="section top">
+    <div class="wrap">
+      <p class="eyebrow">Interactive model</p>
+      <h1>Explore the building</h1>
+      <p class="lede">Rotate, zoom and pan round the drum, wing and subway. The markers flag the inspection findings; select one to read more.</p>
+    </div>
+    <div class="wrap"><ModelViewer height="78vh" /></div>
+    <div class="wrap">
+      <p class="muted small">Massing model built in Blender from site measurements and aerial imagery. Dimensions marked as assumed in our survey notes are still being checked on site.</p>
+      <h2>Findings on the model</h2>
+      <ul class="list">{hotspots.map((h) => <li><strong>{h.label}.</strong> {h.note}</li>)}</ul>
+    </div>
+  </section>
+</Base>
+<style>
+  .top { padding-top: 48px; }
+  .small { font-size: .85rem; margin-top: 24px; }
+  .list { padding-left: 1.2rem; }
+</style>

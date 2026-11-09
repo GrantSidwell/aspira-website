@@ -1,0 +1,39 @@
+:root {
+  --ink: #16201b;
+  --ink-soft: #4a564f;
+  --paper: #f5f2ec;
+  --paper-2: #ebe6dc;
+  --green: #1f3b2d;      /* heritage green, after the painted frames on site */
+  --green-2: #2d5340;
+  --brick: #b5532f;      /* accent */
+  --line: #d6cfc2;
+  --max: 1180px;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+img { max-width: 100%; display: block; }
+a { color: var(--green-2); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); margin: 0 0 1rem; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin: 0 0 1rem; }
+h3 { font-size: 1.3rem; margin: 0 0 .5rem; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.section { padding: 88px 0; }
+.eyebrow { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brick); font-weight: 600; margin: 0 0 .8rem; }
+.lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 46ch; }
+.btn { display: inline-block; padding: .8rem 1.3rem; border-radius: 999px; background: var(--green); color: #fff; text-decoration: none; font-weight: 500; }
+.btn.ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.grid { display: grid; gap: 24px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
+.dark { background: var(--green); color: #eef1ec; }
+.dark a { color: #fff; }
+.dark .eyebrow { color: #e7a17f; }
+.muted { color: var(--ink-soft); }
+.tag { display: inline-block; font-size: .72rem; padding: .15rem .55rem; border-radius: 999px; background: var(--paper-2); color: var(--ink-soft); }
+.prose { max-width: 70ch; }
+.prose h2 { margin-top: 2.4rem; font-size: 1.6rem; }
+.prose em { color: var(--ink-soft); }
+@media (max-width: 640px) { .wrap { padding: 0 16px; } .section { padding: 56px 0; } }

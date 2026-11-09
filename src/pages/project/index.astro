@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+import { byId } from '../../data/team';
+const sections = (await getCollection('report')).sort((a, b) => a.data.number - b.data.number);
+---
+<Base title="Project" description={`${site.project.name}: inspection, pathology and rehabilitation report.`}>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Client report</p>
+      <h1>{site.project.name}</h1>
+      <p class="lede">{site.project.location}. Our inspection, diagnosis and proposals, section by section.</p>
+      <div class="grid secs">
+        {sections.map((s) => (
+          <a class="card sec" href={`/project/${s.id}`}>
+            <span class="n">{String(s.data.number).padStart(2, '0')}</span>
+            <h2>{s.data.title}</h2>
+            <p class="muted">{s.data.summary}</p>
+            <span class="tag">{s.data.status}{byId(s.data.lead) ? ` · ${byId(s.data.lead)!.name}` : ''}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .secs { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 40px; }
+  .sec { text-decoration: none; color: var(--ink); transition: transform .15s; }
+  .sec:hover { transform: translateY(-3px); border-color: var(--brick); }
+  .sec h2 { font-size: 1.35rem; margin: .4rem 0; }
+  .n { font-family: var(--serif); color: var(--brick); font-size: 1.4rem; }
+</style>
