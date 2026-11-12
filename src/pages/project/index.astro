@@ -17,7 +17,7 @@ const sections = (await getCollection('report')).sort((a, b) => a.data.number - 
             <span class="n">{String(s.data.number).padStart(2, '0')}</span>
             <h2>{s.data.title}</h2>
             <p class="muted">{s.data.summary}</p>
-            <span class="tag">{s.data.status}{byId(s.data.lead) ? ` · ${byId(s.data.lead)!.name}` : ''}</span>
+            <span class="tag">{s.data.status}{byId(s.data.lead) ? ` · ${byId(s.data.lead)!.name}` : ''}{byId(s.data.support) ? ` and ${byId(s.data.support)!.name}` : ''}</span>
           </a>
         ))}
       </div>

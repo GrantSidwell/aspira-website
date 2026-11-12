@@ -9,11 +9,12 @@ export async function getStaticPaths() {
 const { entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
 const lead = byId(entry.data.lead);
+const support = byId(entry.data.support);
 ---
 <Base title={entry.data.title} description={entry.data.summary}>
   <article class="section">
     <div class="wrap">
-      <p class="eyebrow">Section {entry.data.number}{lead ? ` · Led by ${lead.name}` : ''}</p>
+      <p class="eyebrow">Section {entry.data.number}{lead ? ` · Led by ${lead.name}` : ''}{support ? `, assisted by ${support.name}` : ''}</p>
       <h1>{entry.data.title}</h1>
       <p class="lede">{entry.data.summary}</p>
       <div class="prose"><Content /></div>
