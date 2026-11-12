@@ -2,6 +2,7 @@
 number: 1
 title: Client brief and building context
 summary: Who the client is, what they need from the building, and why it matters historically, socially and in its townscape.
+lead: alex
 status: placeholder
 ---
 
