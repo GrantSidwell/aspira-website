@@ -9,6 +9,7 @@ const report = defineCollection({
     title: z.string(),
     summary: z.string(),
     lead: z.string().optional(),        // team member id from src/data/team.ts
+    support: z.string().optional(),     // team member id of a supporting member (e.g. visuals)
     status: z.enum(['placeholder', 'draft', 'final']).default('placeholder'),
   }),
 });

@@ -3,6 +3,7 @@ number: 2
 title: Inspection and pathology
 summary: How we inspected the building, what we found, and our reasoned diagnosis of the causes.
 lead: hassan
+support: grant
 status: placeholder
 ---
 
