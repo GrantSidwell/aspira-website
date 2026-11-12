@@ -3,6 +3,7 @@ export type Member = {
   id: string;
   name: string;
   role: string;
+  nickname?: string;
   focus: string;
   bio: string;
   photo?: string;
@@ -11,32 +12,36 @@ export type Member = {
 
 export const team: Member[] = [
   {
-    id: 'grant',
-    name: 'Grant Sidwell',
-    role: 'Role TBC',
-    focus: 'Report sections led: TBC',
-    bio: 'Short professional bio (40 to 60 words): background, interests in building surveying, and what you bring to Aspira.',
-  },
-  {
     id: 'alex',
     name: 'Alex Robbins',
-    role: 'Role TBC',
-    focus: 'Report sections led: TBC',
-    bio: 'Short professional bio (40 to 60 words).',
-  },
-  {
-    id: 'hassan',
-    name: 'Hassan Sharif',
-    role: 'Role TBC',
-    focus: 'Report sections led: TBC',
+    role: 'Managing Director',
+    nickname: 'The Gaffer',
+    focus: 'Leads: client brief and context (section 1), legal and regulatory, corporate video',
     bio: 'Short professional bio (40 to 60 words).',
   },
   {
     id: 'matthew',
     name: 'Matthew Wheeler',
-    role: 'Role TBC',
-    focus: 'Report sections led: TBC',
+    role: 'Principal Conservation and Sustainability Consultant',
+    nickname: 'The Renewal Doctor',
+    focus: 'Leads: rehabilitation (section 4), sustainability and carbon (section 5), conclusions',
     bio: 'Short professional bio (40 to 60 words).',
+  },
+  {
+    id: 'hassan',
+    name: 'Hassan Sharif',
+    role: 'Chief Building Surveyor',
+    nickname: 'The Damp Whisperer',
+    focus: 'Leads: inspection and pathology (section 2), work schedule (section 6)',
+    bio: 'Short professional bio (40 to 60 words).',
+  },
+  {
+    id: 'grant',
+    name: 'Grant Sidwell',
+    role: 'Head of Design and Visualisation',
+    nickname: 'The Colouring-In Department',
+    focus: 'Leads: existing and proposed drawings (section 3), 3D model and visuals',
+    bio: 'Short professional bio (40 to 60 words): background, interests in building surveying, and what you bring to Aspira.',
   },
 ];
 

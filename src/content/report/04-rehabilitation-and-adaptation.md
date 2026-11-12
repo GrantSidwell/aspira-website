@@ -2,6 +2,7 @@
 number: 4
 title: Rehabilitation and adaptation
 summary: The options we appraised, the interventions we propose, and how they protect the building's heritage value.
+lead: matthew
 status: placeholder
 ---
 

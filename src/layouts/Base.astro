@@ -21,6 +21,7 @@ const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.t
   </head>
   <body>
     <Header />
+    {site.project.notice && <p class="notice"><span class="wrap">{site.project.notice}</span></p>}
     <main><slot /></main>
     <Footer />
   </body>

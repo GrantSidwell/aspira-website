@@ -2,6 +2,7 @@
 number: 3
 title: Existing building information
 summary: Existing floor plans, elevations and photographic evidence of condition.
+lead: grant
 status: placeholder
 ---
 

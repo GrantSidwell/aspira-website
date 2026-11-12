@@ -8,5 +8,7 @@ export const site = {
   project: {
     name: 'Cattle Market subway entrance',
     location: 'Wheatfield Way, Kingston upon Thames',
+    // Remove once the building is confirmed with the module team.
+    notice: 'Building selection TBC: under review against the current brief, so the case-study building may change.',
   },
 };
