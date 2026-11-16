@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { Content } from '../brief/client-brief.md';
+---
+<Base title="Client brief" description="The client brief Aspira is responding to: rehabilitating the Cattle Market drum entrance and pedestrian subway, Kingston upon Thames.">
+  <article class="section">
+    <div class="wrap">
+      <p class="eyebrow">Client brief · Draft, 16 November 2026</p>
+      <h1>Cattle Market drum and subway</h1>
+      <p class="lede">The brief from our client, Y Song and Associates, that this project responds to.</p>
+      <p class="note muted">A fictional brief written by the Aspira team for the CE7718 group project. The 2020 closure date is still being checked, and the brief has not yet been confirmed with the module team.</p>
+      <div class="prose brief"><Content /></div>
+      <nav class="pn"><span></span><a href="/project">Our response, section by section →</a></nav>
+    </div>
+  </article>
+</Base>
+<style>
+  .note { font-size: .9rem; max-width: 70ch; margin-top: 1.5rem; }
+  .brief { margin-top: 40px; }
+  .brief :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .92rem; background: #fff; display: block; overflow-x: auto; }
+  .brief :global(th), .brief :global(td) { border: 1px solid var(--line); padding: .6rem .75rem; text-align: left; vertical-align: top; }
+  .brief :global(th) { background: var(--paper-2); font-weight: 600; }
+  .pn { display: flex; justify-content: space-between; gap: 16px; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
+</style>

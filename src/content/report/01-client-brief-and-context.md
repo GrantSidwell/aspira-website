@@ -12,7 +12,9 @@ The Cattle Market building on Wheatfield Way is a single-storey entrance pavilio
 
 ## Client brief
 
-*Placeholder: define the simulated client (owner or occupier), their requirements and the intended future use.*
+Our client is Y Song and Associates. Read the full [client brief](/brief).
+
+*Placeholder: our interpretation of the brief.*
 
 ## Context
 
