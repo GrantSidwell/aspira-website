@@ -1,6 +1,6 @@
 // Clickable labels on the 3D model. Positions are in metres in glTF axes:
 //   glTF x = Blender x (east), glTF y = Blender z (up), glTF z = -(Blender y) (south).
-// Origin = centre of the drum at ground floor level.
+// Origin = centre of the drum at ground floor level (tools/prepare_revit_glb.mjs moves the Revit export there).
 // Easiest way to get a position: open /model?pick=1, click the model, copy the numbers shown.
 export type Hotspot = {
   id: string;
@@ -13,27 +13,27 @@ export type Hotspot = {
 
 export const hotspots: Hotspot[] = [
   {
-    id: 'lantern',
-    label: 'Glazed lantern',
-    note: 'Example: check glazing seals, putty and frame paint at the lantern; a common source of leaks into the drum.',
-    position: '1.62 4.27 0',
-    normal: '1 0 0',
+    id: 'glazing',
+    label: 'Drum glazing',
+    note: 'Example: check glazing seals, gaskets and mullion paint round the drum; a common source of leaks into the stair.',
+    position: '-4.64 1.7 -1.69',
+    normal: '-0.91 0 -0.42',
     section: '02-inspection-and-pathology',
   },
   {
     id: 'plinth',
     label: 'Brick plinth',
     note: 'Example: record salts, spalling and mortar loss at the base of the drum wall.',
-    position: '-4.72 0.35 0',
-    normal: '-1 0 0',
+    position: '-4.69 0.35 1.71',
+    normal: '-0.95 0 0.33',
     section: '02-inspection-and-pathology',
   },
   {
-    id: 'liftbox',
-    label: 'Raised lift block',
-    note: 'Example: flashings where the raised block meets the lower roofs; ventilation of the lift motor room.',
-    position: '-2.4 4.72 9.0',
-    normal: '0 1 0',
+    id: 'wing',
+    label: 'Office wing windows',
+    note: 'Example: check frames, sills and the joint between frame and brickwork on the office wing.',
+    position: '-7.18 1.6 15.4',
+    normal: '-1 0 0',
     section: '02-inspection-and-pathology',
   },
 ];

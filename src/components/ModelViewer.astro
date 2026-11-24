@@ -1,7 +1,7 @@
 ---
 import { hotspots } from '../data/hotspots';
 interface Props { src?: string; height?: string; showHotspots?: boolean; autoRotate?: boolean; }
-const { src = '/models/cattle-market.glb', height = '70vh', showHotspots = true, autoRotate = true } = Astro.props;
+const { src = '/models/the-drum.glb', height = '70vh', showHotspots = true, autoRotate = true } = Astro.props;
 ---
 <div class="mv-wrap" style={`--h:${height}`}>
   <model-viewer
@@ -15,8 +15,8 @@ const { src = '/models/cattle-market.glb', height = '70vh', showHotspots = true,
     interaction-prompt="auto"
     shadow-intensity="1"
     exposure="1.05"
-    camera-orbit="-35deg 64deg 80m"
-    camera-target="-14m -2m 6m"
+    camera-orbit="-35deg 62deg 62m"
+    camera-target="-11m -2m 6m"
     field-of-view="30deg"
     min-camera-orbit="auto auto 5m"
     max-camera-orbit="auto 95deg 120m"
