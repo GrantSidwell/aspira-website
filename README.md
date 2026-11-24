@@ -31,7 +31,7 @@ Each report section has a `status` (placeholder, draft, final) and an optional `
 The site shows `public/models/the-drum.glb`, made from the Revit model.
 
 1. Export the Revit model to GLB (via Blender or any glTF exporter).
-2. Run `npm install` once, then `node tools/prepare_revit_glb.mjs path/to/export.glb`. It removes the level markers and stray default cube, moves the model so the drum centre at ground level is the origin (the hotspots rely on this), gives each Revit family a material (brick, concrete, glass, green paint, doors) and writes `public/models/the-drum.glb`.
+2. Run `npm install` once, then `node tools/prepare_revit_glb.mjs path/to/export.glb`. It removes the level markers and stray default cube, moves the model so the drum centre at ground level is the origin (the hotspots rely on this), gives each Revit family a material (brick, roof, concrete, glass, green paint, doors) and writes `public/models/the-drum.glb`.
 3. Check `/model` locally (`npm run dev`), fix any hotspots that moved, and commit the new `.glb`. The site picks it up on the next deploy.
 
 The earlier Blender massing model is kept as `public/models/cattle-market-blender-backup.glb`. To show it again, change the default `src` in `src/components/ModelViewer.astro`. `tools/export_glb.py` still exports from Blender (change its output name first so it does not overwrite anything you need).

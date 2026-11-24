@@ -8,8 +8,8 @@
 //  1. Drops export leftovers: Revit level markers and Blender's default "Cube".
 //  2. Moves the model so the origin is the centre of the drum at ground-floor level,
 //     which is what src/data/hotspots.ts expects. The drum centre is found by
-//     fitting a circle to the drum's curtain-wall mullions and panels.
-//  3. Gives each Revit family a material (brick, concrete, glass, green paint, doors),
+//     fitting a circle to the drum's curtain-wall mullions.
+//  3. Gives each Revit family a material (brick, roof, concrete, glass, green paint, doors),
 //     because the export comes out as one plain grey material.
 //  4. Prunes and de-duplicates unused data.
 // Units are left as they are: the export is already in metres (Blender applies the
@@ -34,7 +34,8 @@ for (const node of root.listNodes()) {
 }
 
 // 2. Find the drum centre from the curtain wall around the drum.
-const DRUM = [/^Rectangular Mullion/, /^System Panel Glazed/];
+// Mullions only: the panels include the smaller roof lantern, which would skew the fit.
+const DRUM = [/^Rectangular Mullion/];
 const pts = [];
 for (const node of root.listNodes()) {
   if (!DRUM.some((re) => re.test(node.getName())) || !node.getMesh()) continue;
@@ -87,8 +88,10 @@ const concrete = mat('Concrete', [0.55, 0.55, 0.53, 1]);
 const glass = mat('Glass', [0.55, 0.7, 0.75, 0.25], 0.05, true);
 const green = mat('Green paint', [0.04, 0.16, 0.1, 1], 0.5);
 const door = mat('Doors', [0.18, 0.18, 0.19, 1], 0.6);
+const roof = mat('Roof', [0.13, 0.13, 0.14, 1]);
 const RULES = [
   [/Brick/, brick],
+  [/^Basic Roof/, roof],
   [/^(System Panel Glazed|M_Window)/, glass],
   [/^(Rectangular Mullion|Railing|Top Rail|M_Trim)/, green],
   [/^M_Door/, door],
