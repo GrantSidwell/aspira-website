@@ -36,4 +36,12 @@ export const hotspots: Hotspot[] = [
     normal: '-1 0 0',
     section: '02-inspection-and-pathology',
   },
+  {
+    id: 'liftbox',
+    label: 'Raised lift block',
+    note: 'Example: flashings where the raised block meets the lower roofs; ventilation of the lift motor room.',
+    position: '-4.4 5.08 10.0',
+    normal: '-0.54 0.8 -0.27',
+    section: '02-inspection-and-pathology',
+  },
 ];
